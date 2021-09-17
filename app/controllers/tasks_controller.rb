@@ -21,6 +21,9 @@ class TasksController < ApplicationController
       flash.now[:danger] = 'task が投稿されませんでした'
       render :new
     end
+    
+    
+    
   end
 
   def edit
@@ -46,10 +49,13 @@ class TasksController < ApplicationController
     flash[:success] = 'Task は正常に削除されました'
     redirect_to tasks_url
   end
+  
+  private
+
+  def task_params
+      params.require(:task).permit(:content)
+  end
 end
 
-private
 
-def task_params
-    params.require(:task).permit(:content)
-end
+
